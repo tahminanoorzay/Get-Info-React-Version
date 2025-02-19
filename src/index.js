@@ -13,18 +13,18 @@ function GetDetails({
 }) {
   return (
     <div className="container">
-      <GetName name={name} setName={setName} handlerAdd={handlerAdd} />
-      <GetLastName
-        lastName={lastName}
-        setLastName={setLastName}
-        handlerAdd={handlerAdd}
-      />
-      <GetAge age={age} setAge={setAge} handlerAdd={handlerAdd} />
+      <div className="title">Please entar your information</div>
+      <GetName name={name} setName={setName} />
+      <GetLastName lastName={lastName} setLastName={setLastName} />
+      <GetAge age={age} setAge={setAge} />
+      <button className="aBtn" onClick={handlerAdd}>
+        Add
+      </button>
     </div>
   );
 }
 
-function GetName({ name, setName, handlerAdd }) {
+function GetName({ name, setName }) {
   return (
     <div className="input-group">
       <input
@@ -34,14 +34,11 @@ function GetName({ name, setName, handlerAdd }) {
         value={name}
         onChange={(e) => setName(e.target.value)}
       />
-      <button className="aBtn" onClick={handlerAdd}>
-        Add
-      </button>
     </div>
   );
 }
 
-function GetLastName({ lastName, setLastName, handlerAdd }) {
+function GetLastName({ lastName, setLastName }) {
   return (
     <div className="input-group">
       <input
@@ -51,14 +48,11 @@ function GetLastName({ lastName, setLastName, handlerAdd }) {
         value={lastName}
         onChange={(e) => setLastName(e.target.value)}
       />
-      <button className="aBtn" onClick={handlerAdd}>
-        Add
-      </button>
     </div>
   );
 }
 
-function GetAge({ age, setAge, handlerAdd }) {
+function GetAge({ age, setAge }) {
   return (
     <div className=" input-group">
       <input
@@ -68,9 +62,6 @@ function GetAge({ age, setAge, handlerAdd }) {
         value={age}
         onChange={(e) => setAge(e.target.value)}
       />
-      <button className="aBtn" onClick={handlerAdd}>
-        Add
-      </button>
     </div>
   );
 }
@@ -78,13 +69,17 @@ function GetAge({ age, setAge, handlerAdd }) {
 function ShowResult({
   name,
   setName,
-  setDisplayName,
+  lastName,
+  setLastName,
+  age,
+  setAge,
   showResult,
   setShowResult,
 }) {
   function handlerDelate() {
     setName("");
-    setDisplayName("");
+    setLastName("");
+    setAge("");
     setShowResult(false);
   }
 
@@ -93,7 +88,9 @@ function ShowResult({
       {showResult && (
         <div className="container">
           <div className="showDetails">
-            <div>{name}</div>
+            <div>Name: {name}</div>
+            <div>Last name: {lastName}</div>
+            <div>Age: {age}</div>
             <input
               onClick={handlerDelate}
               type="button"
