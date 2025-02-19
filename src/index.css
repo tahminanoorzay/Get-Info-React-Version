@@ -45,34 +45,25 @@ body {
 }
 
 .showDetails {
+  display: flex;
+  justify-content: space-between;
+  align-self: center;
+  margin: 10px;
   background-color: #f0f0f0;
   padding: 15px;
   border-radius: 5px;
 }
 
-.showDetails span {
-  display: block;
-  padding: 10px;
-  background-color: white;
-  margin-bottom: 10px;
-  border-radius: 5px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  position: relative;
-  font-size: 18px;
-}
-
-.showDetails button {
+.dBtn {
   background-color: #6e3ebc;
   color: white;
   border: none;
   padding: 5px 10px;
   border-radius: 5px;
   cursor: pointer;
-  position: absolute;
-  right: 10px;
   top: 10px;
 }
 
-.showDetails button:hover {
+.dBtn:hover {
   background-color: #422a68;
 }
