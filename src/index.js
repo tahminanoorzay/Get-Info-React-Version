@@ -13,94 +13,61 @@ function GetDetails({
 }) {
   return (
     <div className="container">
-      <div className="title">Please entar your information</div>
-      <GetName name={name} setName={setName} />
-      <GetLastName lastName={lastName} setLastName={setLastName} />
-      <GetAge age={age} setAge={setAge} />
-      <button className="aBtn" onClick={handlerAdd}>
-        Add
-      </button>
+      <div className="title">Please enter your information</div>
+      <div className="input-group">
+        <input
+          className="fInput"
+          placeholder="Enter your name"
+          type="text"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+        />
+      </div>
+      <div className="input-group">
+        <input
+          className="fInput"
+          placeholder="Enter your last name"
+          type="text"
+          value={lastName}
+          onChange={(e) => setLastName(e.target.value)}
+        />
+      </div>
+      <div className="input-group">
+        <input
+          className="fInput"
+          placeholder="Enter your age"
+          type="number"
+          value={age}
+          onChange={(e) => setAge(e.target.value)}
+        />
+      </div>
+      <Button text="Add" onClick={handlerAdd} />
     </div>
   );
 }
 
-function GetName({ name, setName }) {
+function ShowResult({ name, lastName, age, showResult, handlerDelete }) {
   return (
-    <div className="input-group">
-      <input
-        className="fInput"
-        placeholder="Enter your name"
-        type="text"
-        value={name}
-        onChange={(e) => setName(e.target.value)}
-      />
-    </div>
-  );
-}
-
-function GetLastName({ lastName, setLastName }) {
-  return (
-    <div className="input-group">
-      <input
-        className="fInput"
-        placeholder="Enter your last name"
-        type="text"
-        value={lastName}
-        onChange={(e) => setLastName(e.target.value)}
-      />
-    </div>
-  );
-}
-
-function GetAge({ age, setAge }) {
-  return (
-    <div className=" input-group">
-      <input
-        className="fInput"
-        placeholder="Enter your age"
-        type="number"
-        value={age}
-        onChange={(e) => setAge(e.target.value)}
-      />
-    </div>
-  );
-}
-
-function ShowResult({
-  name,
-  setName,
-  lastName,
-  setLastName,
-  age,
-  setAge,
-  showResult,
-  setShowResult,
-}) {
-  function handlerDelate() {
-    setName("");
-    setLastName("");
-    setAge("");
-    setShowResult(false);
-  }
-
-  return (
-    <div className="">
+    <div>
       {showResult && (
         <div className="container">
           <div className="showDetails">
             <div>Name: {name}</div>
-            <div>Last name: {lastName}</div>
+            <div>LastName: {lastName}</div>
             <div>Age: {age}</div>
-            <input
-              onClick={handlerDelate}
-              type="button"
-              className="dBtn"
-              value="Delete"
-            ></input>
+            <Button text="Delete" onClick={handlerDelete} />
           </div>
         </div>
       )}
     </div>
+  );
+}
+
+function Button({ text, onClick }) {
+  return (
+    <button className={`${text === "Add" ? "aBtn" : "dBtn"}`} onClick={onClick}>
+      {text}
+    </button>
   );
 }
 
@@ -115,12 +82,16 @@ function App() {
 
   function handlerAdd() {
     setDisplayName(name);
-    setName("");
     setDisplayLastName(lastName);
-    setLastName("");
     setDisplayAge(age);
+    setName("");
+    setLastName("");
     setAge("");
     setShowResult(true);
+  }
+
+  function handlerDelete() {
+    setShowResult(false);
   }
 
   return (
@@ -136,14 +107,10 @@ function App() {
       />
       <ShowResult
         name={displayName}
-        setName={setName}
-        setDisplayName={setDisplayName}
-        showResult={showResult}
-        setShowResult={setShowResult}
         lastName={displayLastName}
-        setLastName={setLastName}
         age={displayAge}
-        setAge={setAge}
+        showResult={showResult}
+        handlerDelete={handlerDelete}
       />
     </>
   );
